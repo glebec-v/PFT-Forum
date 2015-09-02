@@ -16,8 +16,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password', 60);
+            $table->string('skype')->nullable();
+            $table->string('city')->nullable();
+            $table->string('password');
             $table->rememberToken();
+            $table->integer('privileges_id');
             $table->timestamps();
         });
     }
@@ -29,6 +32,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::drop('users', function(Blueprint $table){
+
+        });
     }
 }
