@@ -25,7 +25,7 @@ class UpdatePostsTableChangeExistingField extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('parent_id');
+            $table->integer('parent_id')->change();
         });
     }
 }
