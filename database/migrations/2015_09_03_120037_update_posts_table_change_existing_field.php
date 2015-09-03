@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdatePostsTableCreatingForeigns extends Migration
+class UpdatePostsTableChangeExistingField extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,7 @@ class UpdatePostsTableCreatingForeigns extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('themes_id')->unsigned()->change();
-            $table->integer('users_id')->unsigned()->change();
-            $table->foreign('themes_id')->references('id')->on('themes');
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->integer('parent_id')->unsigned()->change();
         });
     }
 
@@ -28,8 +25,7 @@ class UpdatePostsTableCreatingForeigns extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign('posts_themes_id_foreign');
-            $table->dropForeign('posts_users_id_foreign');
+            $table->integer('parent_id');
         });
     }
 }
