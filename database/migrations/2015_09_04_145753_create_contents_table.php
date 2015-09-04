@@ -16,6 +16,10 @@ class CreateContentsTable extends Migration
             $table->increments('id');
             $table->text('content');
             $table->text('code')->nullable();
+            $table->integer('posts_id')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('posts_id')->references('id')->on('posts');
         });
     }
 
@@ -26,6 +30,8 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('contents');
+        Schema::drop('contents', function(Blueprint $table){
+            $table->dropForeign('contents_posts_id_foreign');
+        });
     }
 }

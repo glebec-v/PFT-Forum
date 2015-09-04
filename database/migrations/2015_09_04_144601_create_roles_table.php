@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePicturesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreatePicturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pictures', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('link', 45);
-            $table->string('link_small', 45);
-            $table->integer('posts_id');
+            $table->string('name', 45);
+            $table->integer('code')->unique();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +27,6 @@ class CreatePicturesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pictures');
+        Schema::drop('roles');
     }
 }

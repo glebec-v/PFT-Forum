@@ -14,13 +14,15 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_parent')->nullable();
+            $table->integer('parent_id')->unsigned()->nullable();
             $table->boolean('child')->nullable();
-            $table->dateTime('posted');
-            $table->dateTime('modified');
             $table->string('title')->nullable();
-            $table->integer('themes_id');
-            $table->integer('users_id');
+            $table->integer('categories_id')->unsigned();
+            $table->integer('users_id')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('categories_id')->references('id')->on('categories');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +33,9 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        Schema::drop('posts', function(Blueprint $table){
+            $table->dropForeign('posts_users_id_foreign');
+            $table->dropForeign('posts_categories_id_foreign');
+        });
     }
 }
