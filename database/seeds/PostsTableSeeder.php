@@ -23,76 +23,119 @@ class PostsTableSeeder extends Seeder
         $category = $faker->numberBetween(1,4);
 
         Post::create([
-            'parent_id' => null,
+            'parent_id' => 0,
             'child' => true,
             'title' => $faker->sentence(),
-            'categories_id' => $category,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//1
         Post::create([
             'parent_id' => 1,
             'child' => false,
             'title' => $faker->sentence(),
-            'categories_id' => $category,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//2
         Post::create([
-            'parent_id' => 2,
+            'parent_id' => 1,
             'child' => true,
             'title' => $faker->sentence(),
-            'categories_id' => $category,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//3
         Post::create([
-            'parent_id' => null,
-            'child' => true,
+            'parent_id' => 1,
+            'child' => false,
             'title' => $faker->sentence(),
-            'categories_id' => $category,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//4
         Post::create([
             'parent_id' => 3,
             'child' => false,
             'title' => $faker->sentence(),
-            'categories_id' => $category,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//5
         Post::create([
-            'parent_id' => 4,
+            'parent_id' => 1,
             'child' => false,
             'title' => $faker->sentence(),
-            'categories_id' => $category,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//6
+        Post::create([
+            'parent_id' => 3,
+            'child' => false,
+            'title' => $faker->sentence(),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//7
+        Post::create([
+            'parent_id' => 3,
+            'child' => false,
+            'title' => $faker->sentence(),
+            'category_id' => $category,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//8
+
 
         $category2 = $faker->numberBetween(5,7);
         Post::create([
-            'parent_id' => null,
+            'parent_id' => 0,
             'child' => true,
             'title' => $faker->sentence(),
-            'categories_id' => $category2,
-            'users_id' => $faker->numberBetween(1,5),
-        ]);//7
-        Post::create([
-            'parent_id' => 7,
-            'child' => true,
-            'title' => $faker->sentence(),
-            'categories_id' => $category2,
-            'users_id' => $faker->numberBetween(1,5),
-        ]);//8
-        Post::create([
-            'parent_id' => 8,
-            'child' => true,
-            'title' => $faker->sentence(),
-            'categories_id' => $category2,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//9
         Post::create([
             'parent_id' => 9,
             'child' => false,
             'title' => $faker->sentence(),
-            'categories_id' => $category2,
-            'users_id' => $faker->numberBetween(1,5),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
         ]);//10
+        Post::create([
+            'parent_id' => 9,
+            'child' => false,
+            'title' => $faker->sentence(),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//11
+        Post::create([
+            'parent_id' => 9,
+            'child' => false,
+            'title' => $faker->sentence(),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//12
+        Post::create([
+            'parent_id' => 0,
+            'child' => true,
+            'title' => $faker->sentence(),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//13
+        Post::create([
+            'parent_id' => 13,
+            'child' => false,
+            'title' => $faker->sentence(),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//14
+        Post::create([
+            'parent_id' => 13,
+            'child' => false,
+            'title' => $faker->sentence(),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//15
+        Post::create([
+            'parent_id' => 13,
+            'child' => false,
+            'title' => $faker->sentence(),
+            'category_id' => $category2,
+            'user_id' => $faker->numberBetween(1,5),
+        ]);//16
     }
 }

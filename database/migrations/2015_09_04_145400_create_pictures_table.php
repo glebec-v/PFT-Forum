@@ -16,10 +16,10 @@ class CreatePicturesTable extends Migration
             $table->increments('id');
             $table->string('link');
             $table->string('link_small');
-            $table->integer('posts_id')->unsigned();
+            $table->integer('post_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('posts_id')->references('id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts');
         });
     }
 
@@ -31,7 +31,7 @@ class CreatePicturesTable extends Migration
     public function down()
     {
         Schema::drop('pictures', function(Blueprint $table){
-            $table->dropForeign('pictures_posts_id_foreign');
+            $table->dropForeign('pictures_post_id_foreign');
         });
     }
 }

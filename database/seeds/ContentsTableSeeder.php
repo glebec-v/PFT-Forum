@@ -47,7 +47,7 @@ class ContentsTableSeeder extends Seeder
             Content::create([
                 'content' => $faker->realText($faker->numberBetween(40, 400)),
                 'code' => $code,
-                'posts_id' => $i,
+                'post_id' => $i,
             ]);
         }
     }

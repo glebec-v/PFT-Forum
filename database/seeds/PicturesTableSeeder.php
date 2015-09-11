@@ -28,7 +28,7 @@ class PicturesTableSeeder extends Seeder
                     Picture::create([
                         'link' => $faker->imageUrl(640,480,'business'),
                         'link_small' => $faker->imageUrl(50,40,'business'),
-                        'posts_id' => $posts_id
+                        'post_id' => $posts_id
                     ]);
                 }
             }
