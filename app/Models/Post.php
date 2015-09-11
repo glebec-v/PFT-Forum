@@ -16,7 +16,7 @@ class Post extends Model
     }
     public function scopeThreadByComments($query, $commentedPost_id)
     {
-        // TODO дописать $query->where....
+        return $query->where('parent_id', $commentedPost_id)->orWhere('id', $commentedPost_id);
     }
 
     public function content()

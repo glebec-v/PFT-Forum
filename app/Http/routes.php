@@ -18,5 +18,5 @@ Route::get('/', function () {
 Route::resource('categories', 'CategoriesController');
 
 Route::controllers([
-    'posts' => 'PostsByCategoryController'
+    'posts' => 'PostsThreadsController'
 ]);

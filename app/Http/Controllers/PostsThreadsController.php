@@ -8,14 +8,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 
-class PostsByCategoryController extends Controller // TODO переименовать в PostsThreadsController
+class PostsThreadsController extends Controller
 {
-     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+    /**
+     * @param $category_id
+     * @return $this
      */
-    public function getThread($category_id) // TODO переименовать в getBytread
+    public function getThread($category_id)
     {
         $forumpost = Post::threadByCategory($category_id)->get();
         $category = $forumpost->first()->category->name;
@@ -25,5 +24,13 @@ class PostsByCategoryController extends Controller // TODO переименов�
         ]);
     }
 
-    // TODO дописать getBycomments($id)
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function getComments($id)
+    {
+        $comments = Post::threadByComments($id)->get();
+        return view('posts.comments')->with('comments', $comments);
+    }
 }
