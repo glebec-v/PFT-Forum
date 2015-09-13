@@ -63,7 +63,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -73,9 +74,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CategoryFormRequest $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $oldname = $category->name;
+        $category->update(['name' => $request->get('name')]);
+        return redirect('categories')->with('message', 'Категория "'.$oldname.'" успешно изменено на "'.$category->name.'"');
     }
 
     /**
@@ -86,6 +90,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $name = Category::find($id)->name;
+        Category::destroy($id);
+        return redirect('categories')->with('message', 'категория "'.$name.'" успешно удалена!');
     }
 }
