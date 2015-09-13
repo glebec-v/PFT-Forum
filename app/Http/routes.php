@@ -17,6 +17,9 @@ Route::get('/home', 'CategoriesController@index'); // TODO временное р
 Route::resource('categories', 'CategoriesController');
 Route::resource('post', 'PostController');
 
+Route::controllers(['posts' => 'PostsThreadsController']);
+
 Route::controllers([
-    'posts' => 'PostsThreadsController'
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
 ]);
