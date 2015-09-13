@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CategoriesController@index'); // TODO временное решение!!!
+Route::get('/home', 'CategoriesController@index'); // TODO временное решение!!!
 
 Route::resource('categories', 'CategoriesController');
-Route::resource('posts', 'PostsController');
+Route::resource('post', 'PostController');
 
 Route::controllers([
     'posts' => 'PostsThreadsController'

@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +38,10 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // привязка авторизованного пользователя к создаваемому посту
+        // $forumpost = new Post($request->all());
+        // Auth::user()->posts()->save($forumpost);
+        // return redirect('somewhere');
     }
 
     /**

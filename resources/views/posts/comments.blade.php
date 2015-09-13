@@ -5,9 +5,11 @@
             @foreach($comments as $post)
                 <li>
                     @if ($post->child)
-                        {{ $post->title }}
+                        К этому посту имеются комментарии:
+                        {!! link_to('posts/comments/'.$post->id, $post->title) !!}
+                        {!! link_to('post/'.$post->id, 'Посмотреть пост') !!}
                     @else
-                        {{ $post->title }}
+                        {!! link_to('post/'.$post->id, $post->title) !!}
                     @endif
                 </li>
             @endforeach

@@ -20,7 +20,7 @@ class ContentsTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for ($i=1; $i<=10; $i++) {
+        for ($i=1; $i<=16; $i++) {
             if ($faker->boolean(50)){
                 $code = 'void *functionCount1()
 {
