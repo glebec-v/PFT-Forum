@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
-
-use App\Models\Category;
-use App\Http\Requests\CategoryFormRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 
-class CategoriesController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +17,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.index')->with('categories', $categories);
+        //
     }
 
     /**
@@ -30,7 +27,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        //
     }
 
     /**
@@ -39,11 +36,9 @@ class CategoriesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(CategoryFormRequest $request)
+    public function store(Request $request)
     {
-        $category = new Category(['name' => $request->get('name')]);
-        $category->save();
-        return redirect('categories')->with('message', 'категория успешно добавлена');
+        //
     }
 
     /**
@@ -54,7 +49,8 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $forumpost = Post::findOrFail($id);
+        return view('posts.show')->with('forumpost', $forumpost);
     }
 
     /**
@@ -65,8 +61,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('categories.edit')->with('category', $category);
+        //
     }
 
     /**
@@ -76,12 +71,9 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(CategoryFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $oldname = $category->name;
-        $category->update(['name' => $request->get('name')]);
-        return redirect('categories')->with('message', 'Категория "'.$oldname.'" успешно изменено на "'.$category->name.'"');
+        //
     }
 
     /**
@@ -92,8 +84,6 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $name = Category::find($id)->name;
-        Category::destroy($id);
-        return redirect('categories')->with('message', 'категория "'.$name.'" успешно удалена!');
+        //
     }
 }

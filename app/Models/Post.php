@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title'
+        'title',
+        'user_id' // TODO this is temporary!!!
     ];
 
     public function scopeThreadByCategory($query, $category_id)
