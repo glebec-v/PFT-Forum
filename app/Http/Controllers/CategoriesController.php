@@ -28,7 +28,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -37,9 +37,11 @@ class CategoriesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Requests\CategoryFormRequest $request)
     {
-        //
+        $category = new Category(['name' => $request->get('name')]);
+        $category->save();
+        return redirect('categories')->with('message', 'категория успешно добавлена');
     }
 
     /**
