@@ -1,6 +1,21 @@
 ## Forum based on Laravel PHP Framework
 
-## Структура БД
+## Установка
+
+Клонируйте репозиторий. Далее запускаете ```$ composer install``` После того как он отработает, выполните 2 команды:
+```
+composer require laravelcollective/html
+composer require nesbot/carbon
+```
+далее нужно добавить в файл /config/app.php в массив providers строчку
+```
+Collective\Html\HtmlServiceProvider::class,
+```
+ и в массив aliases 2 строчки:
+```
+'Form' => Collective\Html\FormFacade::class,
+'Html' => Collective\Html\FormFacade::class,
+```
 
 Создайте файл .env, пропишите туда название БД и пользователя. Чтобы получить чистую структуру таблиц, выполните
 ```$ php artisan migrate```
