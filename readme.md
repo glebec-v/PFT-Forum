@@ -6,6 +6,7 @@
 ```
 composer require laravelcollective/html
 composer require nesbot/carbon
+composer update
 ```
 далее нужно добавить в файл /config/app.php в массив providers строчку
 ```
