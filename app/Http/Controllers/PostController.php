@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::lists('name', 'id');
+        return view('posts.create')->with('category', $category);
     }
 
     /**
@@ -41,7 +43,7 @@ class PostController extends Controller
         // привязка авторизованного пользователя к создаваемому посту
         // $forumpost = new Post($request->all());
         // Auth::user()->posts()->save($forumpost);
-        // return redirect('somewhere');
+        return redirect('/');
     }
 
     /**
