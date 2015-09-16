@@ -2,7 +2,7 @@
 
 ## Установка
 
-Клонируйте репозиторий. Далее запускаете ```$ composer install``` После того как он отработает, выполните 2 команды:
+Клонируйте репозиторий. Далее запускаете ```$ composer install``` После того как он отработает, выполните 3 команды:
 ```
 composer require laravelcollective/html
 composer require nesbot/carbon
@@ -12,7 +12,7 @@ composer update
 ```
 Collective\Html\HtmlServiceProvider::class,
 ```
- и в массив aliases 2 строчки:
+ и в массив aliases:
 ```
 'Form' => Collective\Html\FormFacade::class,
 'Html' => Collective\Html\FormFacade::class,
