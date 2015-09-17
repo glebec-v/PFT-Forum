@@ -12,3 +12,12 @@
         </ul>
     @endif
 @stop
+
+@section('profit_links')
+    <p>
+        {!! link_to_action('PostsThreadsController@getCreateNext', 'Комментировать', [
+            'category_id' => $forumpost->category_id,
+            'parent_id' => $forumpost->id
+        ]) !!}
+    </p>
+@endsection

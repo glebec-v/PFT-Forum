@@ -15,5 +15,13 @@
             @endforeach
         </ul>
     @endif
-
 @stop
+
+@section('profit_links')
+    <p>
+        {!! link_to_action('PostsThreadsController@getCreateNext', 'Продолжить дискуссию', [
+            'category_id' => $firstpost->category_id,
+            'parent_id' => $firstpost->id
+        ]) !!}
+    </p>
+@endsection
