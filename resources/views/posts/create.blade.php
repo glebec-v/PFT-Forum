@@ -5,7 +5,7 @@
 
     @include('partials.errors')
 
-    {!! Form::open(['route' => 'post.store', 'class' => 'form']) !!}
+    {!! Form::open(['route' => 'post.store', 'class' => 'form', 'files' => true]) !!}
 
     <div class="form-group">
         {!! Form::label('Заголовок поста') !!}
@@ -19,6 +19,10 @@
         {!! Form::label('Код') !!}
         {!! Form::textarea('code', null, ['class' => 'form-control', 'placeholder' => 'Code snippet']) !!}
     </div>
+    <div class="form-group">
+        {!! Form::label('Присоедините картинки') !!}
+        {!! Form::file('image', ['accept' => 'image/*']) !!}
+    </div>
 
     @if (isset($forumpost->category->name))
         {!! Form::hidden('category_id', $forumpost->category->id) !!}
@@ -30,12 +34,14 @@
         <h3>Выберите категорию</h3>
         <div class="form-group">
             {!! Form::label('Категории') !!}
-            {!! Form::select('category_id', $category, null, ['name' => 'category_id']) !!}
+            {!! Form::select('category_id', $categories, null, ['name' => 'category_id']) !!}
         </div>
         {!! Form::hidden('parent_id', 0) !!}
     @endif
+
     {!! Form::hidden('child', false) !!}
-    <!-- Temporary!!! --> {!! Form::hidden('user_id', 1) !!}
+    {{-- Temporary!!! --}}
+    {!! Form::hidden('user_id', 1) !!}
 
     <div class="form-group">
         {!! Form::submit('Запостить', ['class' => 'btn btn-primary']) !!}

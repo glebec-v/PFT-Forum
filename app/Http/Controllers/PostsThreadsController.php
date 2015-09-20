@@ -31,7 +31,6 @@ class PostsThreadsController extends Controller
     {
         $comments = Post::threadByComments($id)->get();
         $firstpost = Post::find($id);
-        //dd($firstpost);
         return view('posts.comments')->with(['comments' => $comments, 'firstpost' => $firstpost]);
     }
 

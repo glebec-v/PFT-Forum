@@ -30,8 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $category = Category::lists('name', 'id');
-        return view('posts.create')->with('category', $category);
+        $categories = Category::lists('name');
+        //dd($categories);
+        return view('posts.create')->with('categories', $categories);
     }
 
     /**
@@ -53,23 +54,28 @@ class PostController extends Controller
             'body' => $request->get('body'),
             'code' => $request->get('code')
         ]);
-        /*
+
+        // todo может вообще перенести проверку upload картинки в FormRequest???
+        $destinationPath = '/home/glebec/forumProfit/img'; // todo временное решение, определиться с местом храниения файлов
+        $imageFileName = 'img'.$post->user_id;             // todo временное решение, определиться с порядком именования файлов
+        if ($request->file('image')->isValid()){
+            $request->file('image')->move($destinationPath, $imageFileName);
+        }
         $pictures = new Picture([
-            'link' => $request->get('link'),
-            'link_small' => $request->get('title')
+            'link' => $destinationPath,
+    //  todo добавить преобразование картинки в маленький формат      'link_small' => $request->get('title')
         ]);
-        */
+
         $post->save();
         $post->content()->save($content);
-        //$post->pictures()->save($pictures);
+        $post->pictures()->save($pictures);
 
         // привязка авторизованного пользователя к создаваемому посту
         // $forumpost = new Post($request->all());
         // Auth::user()->posts()->save($forumpost);
 
-        dd($post->toArray());
-        dd($content->toArray());
-        return redirect('/');
+        // Todo отработать осмысленный редирект, так как пост может создаваться тремя разными способами
+        return redirect('categories');
     }
 
     /**
@@ -92,7 +98,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $forumpost = Post::findOrFAil($id);
+        return view('posts.edit')-with('forumpost', $forumpost);
     }
 
     /**
@@ -104,7 +111,12 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $forumpost = Post::findOrFAil($id);
+
+        $forumpost->update([
+            'title' => $request->get('title')
+        ]);
+        return view('posts.show')->with('forumpost', $forumpost);
     }
 
     /**
