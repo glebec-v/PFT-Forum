@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('categories');
     }
 
     /**
@@ -31,7 +31,6 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::lists('name');
-        //dd($categories);
         return view('posts.create')->with('categories', $categories);
     }
 
