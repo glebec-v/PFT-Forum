@@ -20,6 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        dd(storage_path('app'));
         return redirect('categories');
     }
 
@@ -54,9 +55,8 @@ class PostController extends Controller
             'code' => $request->get('code')
         ]);
 
-        // todo может вообще перенести проверку upload картинки в FormRequest???
-        $destinationPath = '/home/glebec/forumProfit/img'; // todo временное решение, определиться с местом храниения файлов
-        $imageFileName = 'img'.$post->user_id;             // todo временное решение, определиться с порядком именования файлов
+        $destinationPath = storage_path('app').'/img';
+        $imageFileName = 'img_'.str_random(20).'_'.$post->user_id; // todo решение спорное, однако пока так
         if ($request->file('image')->isValid()){
             $request->file('image')->move($destinationPath, $imageFileName);
         }
