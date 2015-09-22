@@ -9,6 +9,13 @@
 </head>
 <body>
 
+<div class="bg-info">
+    <div id="weather" align="right">
+       <a href="http://pogoda.yandex.ru/tambov/">{{$city}}</a>
+       <img src="http://img.yandex.net/i/wiz{{$pic}}.png" alt={{$type}} title={{$type}}> {{$temp}} <sup>o</sup>C
+    </div>
+</div>
+
 @include('layouts._navmenu')
 
 <div class="container">

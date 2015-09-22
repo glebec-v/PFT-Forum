@@ -19,8 +19,33 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+    $city_id=27947; // id города
+    $data_file="http://export.yandex.ru/weather-ng/forecasts/$city_id.xml"; // адрес xml файла
+
+              $xml = simplexml_load_file($data_file); // раскладываем xml на массив
+
+    // выбираем требуемые параметры (город, температура, пиктограмма и тип погоды текстом (облачно, ясно)
+
+    $city=$xml->fact->station;
+    $temp=$xml->fact->temperature;
+    $pic=$xml->fact->image;
+    $type=$xml->fact->weather_type;
+
+    // Если значение температуры положительно, для наглядности добавляем "+"
+    if ($temp>0) {
+        $temp='+'.$temp;
+    }
+
         $categories = Category::all();
-        return view('categories.index')->with('categories', $categories);
+        return view('categories.index')->with(
+            [
+                'categories' => $categories,
+                'city' => $city,
+                'city_id' => $city_id,
+                'temp' => $temp,
+                'pic' => $pic,
+                'type' => $type
+            ]);
     }
 
     /**
