@@ -9,14 +9,51 @@
 </head>
 <body>
 
-<div class="bg-info">
-    <div id="weather" align="right">
-       <a href="http://pogoda.yandex.ru/tambov/">{{$city}}</a>
-       <img src="http://img.yandex.net/i/wiz{{$pic}}.png" alt={{$type}} title={{$type}}> {{$temp}} <sup>o</sup>C
+<div class="container hidden-xs" >
+    <div class="row" >
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/jsimg.jpg"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/linuximg.jpg"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/jsimg.jpg"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/linuximg.jpg"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
+
+        <div id="weather" class="col-sm-2 col-md-2 col-lg-1" align="right" style="margin: 0px; padding: 0px">
+            <a href="http://pogoda.yandex.ru/tambov/">{{$city}}</a>
+            <img src="http://img.yandex.net/i/wiz{{$pic}}.png" alt={{$type}} title={{$type}}>
+            <p>{{$temp}} <sup>o</sup>C</p>
+        </div>
     </div>
 </div>
 
 @include('layouts._navmenu')
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                @yield('content')
+            </div>
+            <div class="col-sm-2">@section('profit_links')
+                    @if(Session::has('message'))
+                        <div class="alert-info">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+                    <h2>Ссылки:</h2>
+                    {!! link_to('http://pr-of-it.ru', $title = 'profIT', $attributes = [], $secure = null) !!}
+                    <br/>
+                    {!! link_to('http://laravel.com/docs/5.1', $title = 'Laravel docs', $attributes = [], $secure = null) !!}
+                @show
+            </div>
+        </div>
+    </div>
+</main>
+
 
 <div class="container">
     <div class="col-md-10">

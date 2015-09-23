@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">PFT-Forum</a>
+            <a class="navbar-brand" href="/" style="color: #000">PFT-Forum</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -19,6 +19,7 @@
             <a href="#" class="navbar-right">
                 <button class="btn btn-default btn-sm navbar-btn">Войти</button>
             </a>
+
             <p class="navbar-text navbar-right" style="padding-right: 10px;">Здравствуйте, ник!</p>
         </div>
     </div>
