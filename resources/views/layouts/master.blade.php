@@ -12,6 +12,7 @@
 
 @include('layouts._imageandweather')
 @include('layouts._navmenu')
+@include('layouts._bredcrampsandfind')
 
 <main>
     <div class="container">
@@ -62,6 +63,7 @@
 {!! Html::script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') !!}
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {!! Html::script ("/js/ie10-viewport-bug-workaround.js") !!}
+{!! Html::script ("/js/timer.js") !!}
 
 </body>
 </html>
