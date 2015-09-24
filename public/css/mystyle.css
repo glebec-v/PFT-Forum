@@ -1,0 +1,12 @@
+.topheaderimg {
+    margin: 0px;
+    padding: 0px;
+    align-content: center;
+    }
+#weather ,
+#weather p {
+    margin: 0px;
+    padding: 0px;
+    right: 0px;
+    text-align: right;
+}
