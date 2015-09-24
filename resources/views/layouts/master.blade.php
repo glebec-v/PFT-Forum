@@ -11,16 +11,16 @@
 
 <div class="container hidden-xs" >
     <div class="row" >
-        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
-        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/jsimg.jpg"></div>
-        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/linuximg.jpg"></div>
-        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
-        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px"><img src="../../images/jsimg.jpg"></div>
-        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/linuximg.jpg"></div>
-        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
-        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
-        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
-        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px"><img src="../../images/phpworld.png"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/freeimg.jpg"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/jsimg.jpg"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/linux2.jpg"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/phpworld.png"></div>
+        <div class="col-lg-1 col-md-1 col-sm-2" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/pgimg.jpg"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/sqlite.jpg"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/sisi.jpg"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/freebsd.jpg"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/node.jpg"></div>
+        <div class="col-lg-1 col-md-1 hidden-sm" style="margin: 0px; padding: 0px align-content: center"><img src="../../images/composer.jpg"></div>
 
         <div id="weather" class="col-sm-2 col-md-2 col-lg-1" align="right" style="margin: 0px; padding: 0px">
             <a href="http://pogoda.yandex.ru/tambov/">{{$city}}</a>
