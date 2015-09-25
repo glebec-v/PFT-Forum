@@ -1,17 +1,19 @@
 .topheaderimg {
-    margin: 0px;
-    padding: 0px;
+    padding: 1px 0px 1px 0px;
     align-content: center;
     }
 
-#weather ,
-#weather p {
+.row img {
+    display: block;
+    margin: 0 auto;
+}
+
+#weather,
+#weather p,
+#weather img {
+    display: inline-block;
     margin: 0px;
     padding: 0px;
     right: 0px;
     text-align: right;
-}
-
-#secondnav {
-    display: inline-block;
 }
