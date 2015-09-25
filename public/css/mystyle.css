@@ -8,6 +8,20 @@
     margin: 0 auto;
 }
 
+.info {
+    padding-right: 10px;
+}
+
+.info p  {
+    margin: 1px 0px;
+    padding: 0px;
+    font-size: 0.8em;
+}
+
+.info p a {
+    color: blue;
+}
+
 #weather,
 #weather p,
 #weather img {

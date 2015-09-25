@@ -17,10 +17,19 @@
                 <li><a href="#">Новости</a></li>
             </ul>
             <a href="#" class="navbar-right">
-                <button class="btn btn-default btn-sm navbar-btn">Войти</button>
+                <button class="btn btn-default btn-sm navbar-btn">Вх/Вых</button>
             </a>
 
-            <p class="navbar-text navbar-right" style="padding-right: 10px;">Здравствуйте, ник!</p>
+            <div class="navbar-right info">
+                <p> Вы вошли как ..... </p>
+
+                <p> Последний вход: 01.01.1999 </p>
+
+                <p>
+                    <a href="#">Ваши темы</a>
+                    <a href="#">Ваши сообщения</a>
+                </p>
+            </div>
         </div>
     </div>
 </nav>

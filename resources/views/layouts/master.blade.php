@@ -14,29 +14,6 @@
 @include('layouts._navmenu')
 @include('layouts._bredcrampsandfind')
 
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10">
-                @yield('content')
-            </div>
-            <div class="col-sm-2">@section('profit_links')
-                    @if(Session::has('message'))
-                        <div class="alert-info">
-                            {{ Session::get('message') }}
-                        </div>
-                    @endif
-                    <h2>Ссылки:</h2>
-                    {!! link_to('http://pr-of-it.ru', $title = 'profIT', $attributes = [], $secure = null) !!}
-                    <br/>
-                    {!! link_to('http://laravel.com/docs/5.1', $title = 'Laravel docs', $attributes = [], $secure = null) !!}
-                @show
-            </div>
-        </div>
-    </div>
-</main>
-
-
 <div class="container">
     <div class="col-md-10">
         @yield('content')
