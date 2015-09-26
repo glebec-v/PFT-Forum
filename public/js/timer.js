@@ -50,7 +50,7 @@ Timer.prototype.getDays = function () {
 Timer.prototype.setHtmlTimer = function () {
     var timer = this.el.children;
 
-    timer.tday.innerHTML = this.getDays() + ' : ';
+    timer.tday.innerHTML = this.getDays() + 'дн. : ';
     timer.thour.innerHTML = this.getHour() + ' : ';
     timer.tmin.innerHTML = this.getMin() + ' : ';
     timer.tsec.innerHTML = this.getSec();
@@ -71,7 +71,7 @@ Timer.prototype.getTime = function () {
     return { sec: sec, min: min, hour: hour, day: day }
 }
 
-var timer = new Timer(99999999999, function() {
+var timer = new Timer(999999, function() {
     alert('Time is over!')
 });
 setTimeout(timer.timerStart, 1000);

@@ -21,7 +21,7 @@
                 </li>
             </ul>
         </div>
-        <div id="timer">
+        <div id="timer" style="color: #C40D0D">
 До конца света осталось :
         </div>
     </div>

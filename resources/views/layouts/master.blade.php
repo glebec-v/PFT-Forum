@@ -4,6 +4,7 @@
 
     {!! Html::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css') !!}
     {!! Html::style ("/css/mystyle.css") !!}
+    {!! Html::style ("/css/game.css") !!}
 
     <meta charset="UTF-8">
     <title>Forum</title>
@@ -14,24 +15,29 @@
 @include('layouts._navmenu')
 @include('layouts._bredcrampsandfind')
 
-<div class="container">
-    <div class="col-md-10">
-        @yield('content')
-    </div>
-    <div class="col-md-2">
+<div class="container" style="padding: 0px; ">
+    <div class="col-lg-2 navbar-right clearfix" style="background-color: #f7ecb5; border-radius: 10px 10px 0px 0px">
         @section('profit_links')
+
             @if(Session::has('message'))
                 <div class="alert-info">
                     {{ Session::get('message') }}
                 </div>
             @endif
-            <h2>Ссылки:</h2>
+            <h4 style="margin: 1px;">Ссылки:</h4>
             {!! link_to('http://pr-of-it.ru', $title = 'profIT', $attributes = [], $secure = null) !!}
             <br/>
             {!! link_to('http://laravel.com/docs/5.1', $title = 'Laravel docs', $attributes = [], $secure = null) !!}
         @show
     </div>
+
+        @yield('content')
 </div>
+<footer class="footer">
+<div class="footer">
+    <p></p>
+</div>
+</footer>
 
 <!-- Bootstrap core JavaScript
    ================================================== -->
