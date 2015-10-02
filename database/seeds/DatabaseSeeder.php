@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::findOrNew(5)->roles()->attach(6);
 
         $this->call('PostsTableSeeder');
-        $this->call('ContentsTableSeeder');
+        $this->call('ProfilesTableSeeder');
         $this->call('PicturesTableSeeder');
 
         Model::reguard();
