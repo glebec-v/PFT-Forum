@@ -8,12 +8,15 @@ class Post extends Model
 {
     protected $fillable = [
         'title',
-        'user_id' // TODO this is temporary!!!
+        'user_id', // TODO this is temporary!!!
+        'parent_id',
+        'category_id',
+        'child'
     ];
 
     public function scopeThreadByCategory($query, $category_id)
     {
-        return $query->where('category_id', $category_id);
+        return $query->where('category_id', $category_id)->where('parent_id', 0);
     }
     public function scopeThreadByComments($query, $commentedPost_id)
     {
