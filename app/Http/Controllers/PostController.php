@@ -20,7 +20,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        dd(storage_path('app'));
         return redirect('categories');
     }
 
