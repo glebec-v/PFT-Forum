@@ -9,7 +9,11 @@
 
     <div class="form-group">
         {!! Form::label('Заголовок поста') !!}
-        {!! Form::text('title', null, ['required', 'class' => 'form-control', 'placeholder' => 'Заголовок']) !!}
+        @if (isset($forumpost->id))
+            {!! Form::text('title', 'Re: '.$forumpost->title, ['required', 'class' => 'form-control']) !!}
+        @else
+            {!! Form::text('title', null, ['required', 'class' => 'form-control', 'placeholder' => 'Ваш заголовок']) !!}
+        @endif
     </div>
     <div class="form-group">
         {!! Form::label('Текст сообщения') !!}
