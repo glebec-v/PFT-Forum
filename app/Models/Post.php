@@ -8,6 +8,8 @@ class Post extends Model
 {
     protected $fillable = [
         'title',
+        'body',
+        'code',
         'user_id', // TODO this is temporary!!!
         'parent_id',
         'category_id',

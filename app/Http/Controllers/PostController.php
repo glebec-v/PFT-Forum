@@ -94,7 +94,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $forumpost = Post::findOrFAil($id);
-        return view('posts.edit')-with('forumpost', $forumpost);
+        //dd($forumpost);
+        return view('posts.edit')->with('forumpost', $forumpost);
     }
 
     /**
@@ -109,8 +110,23 @@ class PostController extends Controller
         $forumpost = Post::findOrFAil($id);
 
         $forumpost->update([
-            'title' => $request->get('title')
+            'title' => $request->get('title'),
+            'body' => $request->get('body'),
+            'code' => $request->get('code')
         ]);
+
+        // todo добавить ОТСОЕДИНЕНИЕ картинки
+        $destinationPath = storage_path('app').'/img';
+        $imageFileName = 'img_'.str_random(20).'_'.$forumpost->user_id; // todo решение спорное, однако пока так
+        if ($request->file('image')->isValid()){
+            $request->file('image')->move($destinationPath, $imageFileName);
+        }
+        $pictures = new Picture([
+            'link' => $destinationPath,
+            //  todo добавить преобразование картинки в маленький формат      'link_small' => $request->get('title')
+        ]);
+        $forumpost->pictures()->save($pictures);
+
         return view('posts.show')->with('forumpost', $forumpost);
     }
 
