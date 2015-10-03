@@ -44,14 +44,12 @@ class PostController extends Controller
     {
         $post = new Post([
             'title' => $request->get('title'),
+            'body' => $request->get('body'),
+            'code' => $request->get('code'),
             'parent_id' => $request->get('parent_id'),
             'category_id' => $request->get('category_id'),
             'child' => $request->get('child'),
             'user_id' => $request->get('user_id')
-        ]);
-        $content = new Content([
-            'body' => $request->get('body'),
-            'code' => $request->get('code')
         ]);
 
         $destinationPath = storage_path('app').'/img';
@@ -65,7 +63,6 @@ class PostController extends Controller
         ]);
 
         $post->save();
-        $post->content()->save($content);
         $post->pictures()->save($pictures);
 
         // привязка авторизованного пользователя к создаваемому посту
