@@ -51,19 +51,21 @@ class PostController extends Controller
             'child' => $request->get('child'),
             'user_id' => $request->get('user_id')
         ]);
-
-        $destinationPath = storage_path('app').'/img';
-        $imageFileName = 'img_'.str_random(20).'_'.$post->user_id; // todo решение спорное, однако пока так
-        if ($request->file('image')->isValid()){
-            $request->file('image')->move($destinationPath, $imageFileName);
-        }
-        $pictures = new Picture([
-            'link' => $destinationPath,
-    //  todo добавить преобразование картинки в маленький формат      'link_small' => $request->get('title')
-        ]);
-
         $post->save();
-        $post->pictures()->save($pictures);
+
+        if (!is_null($request->file('image'))) {
+            $destinationPath = storage_path('app') . '/img';
+            $imageFileName = 'img_' . str_random(20) . '_' . $post->user_id; // todo решение спорное, однако пока так
+            if ($request->file('image')->isValid()) {
+                $request->file('image')->move($destinationPath, $imageFileName);
+            }
+            $pictures = new Picture([
+                'link' => $destinationPath,
+                //  todo добавить преобразование картинки в маленький формат      'link_small' => $request->get('title')
+            ]);
+            $post->pictures()->save($pictures);
+        }
+
 
         // привязка авторизованного пользователя к создаваемому посту
         // $forumpost = new Post($request->all());
@@ -94,7 +96,6 @@ class PostController extends Controller
     public function edit($id)
     {
         $forumpost = Post::findOrFAil($id);
-        //dd($forumpost);
         return view('posts.edit')->with('forumpost', $forumpost);
     }
 
@@ -138,6 +139,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parent = Post::find($id)->parent_id;
+        $comments = Post::threadByComments($parent)->get();
+        if (count($comments) == 2) {
+            $startPost = $comments->first();
+            $startPost->child = false;
+            $startPost->save();
+        }
+
+        Post::destroy($id);
+        return redirect('categories')->with('message', 'Ваше сообщение было удалено');
     }
 }

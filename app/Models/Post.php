@@ -25,10 +25,6 @@ class Post extends Model
         return $query->where('parent_id', $commentedPost_id)->orWhere('id', $commentedPost_id);
     }
 
-    public function content()
-    {
-        return $this->hasOne('App\Models\Content');
-    }
     public function category()
     {
         return $this->belongsTo('App\Models\Category');

@@ -30,4 +30,10 @@
     </div>
 
     {!! Form::close() !!}
+
+    {!! Form::open(['route' => ['post.destroy', $forumpost->id], 'method' => 'delete']) !!}
+        <div class="form-group">
+            {!! Form::submit('Удалить сообщение', ['class' => 'btn btn-danger']) !!}
+        </div>
+    {!! Form::close() !!}
 @stop
