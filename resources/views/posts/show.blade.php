@@ -20,4 +20,5 @@
             'parent_id' => $forumpost->id
         ]) !!}
     </p>
+    @parent
 @endsection

@@ -5,7 +5,7 @@
 
     @include('partials.errors')
 
-    {!! Form::open(['route' => 'post.store', 'class' => 'form', 'files' => true]) !!}
+    {!! Form::open(['route' => 'post.store', 'class' => 'form']) !!}
 
     <div class="form-group">
         {!! Form::label('Заголовок поста') !!}
@@ -23,10 +23,6 @@
         {!! Form::label('Код') !!}
         {!! Form::textarea('code', null, ['class' => 'form-control', 'placeholder' => 'Code snippet']) !!}
     </div>
-    <div class="form-group">
-        {!! Form::label('Присоедините картинки') !!}
-        {!! Form::file('image', ['accept' => 'image/*']) !!}
-    </div>
 
     @if (isset($forumpost->category->name))
         {!! Form::hidden('category_id', $forumpost->category->id) !!}
@@ -38,7 +34,7 @@
         <h3>Выберите категорию</h3>
         <div class="form-group">
             {!! Form::label('Категории') !!}
-            {!! Form::select('category_id', $categories, null, ['name' => 'category_id']) !!}
+            {!! Form::select('category_id', $categories, null, ['category_id' => 'name']) !!}
         </div>
         {!! Form::hidden('parent_id', 0) !!}
     @endif

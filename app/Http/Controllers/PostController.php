@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Content;
-use App\Models\Picture;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -30,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::lists('name');
+        $categories = Category::lists('name', 'id');
         return view('posts.create')->with('categories', $categories);
     }
 
@@ -42,6 +40,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->get('category_id'));
         $post = new Post([
             'title' => $request->get('title'),
             'body' => $request->get('body'),
@@ -52,21 +51,6 @@ class PostController extends Controller
             'user_id' => $request->get('user_id')
         ]);
         $post->save();
-
-        if (!is_null($request->file('image'))) {
-            $destinationPath = storage_path('app') . '/img';
-            $imageFileName = 'img_' . str_random(20) . '_' . $post->user_id; // todo решение спорное, однако пока так
-            if ($request->file('image')->isValid()) {
-                $request->file('image')->move($destinationPath, $imageFileName);
-            }
-            $pictures = new Picture([
-                'link' => $destinationPath,
-                //  todo добавить преобразование картинки в маленький формат      'link_small' => $request->get('title')
-            ]);
-            $post->pictures()->save($pictures);
-        }
-
-
         // привязка авторизованного пользователя к создаваемому посту
         // $forumpost = new Post($request->all());
         // Auth::user()->posts()->save($forumpost);
@@ -109,25 +93,11 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $forumpost = Post::findOrFAil($id);
-
         $forumpost->update([
             'title' => $request->get('title'),
             'body' => $request->get('body'),
             'code' => $request->get('code')
         ]);
-
-        // todo добавить ОТСОЕДИНЕНИЕ картинки
-        $destinationPath = storage_path('app').'/img';
-        $imageFileName = 'img_'.str_random(20).'_'.$forumpost->user_id; // todo решение спорное, однако пока так
-        if ($request->file('image')->isValid()){
-            $request->file('image')->move($destinationPath, $imageFileName);
-        }
-        $pictures = new Picture([
-            'link' => $destinationPath,
-            //  todo добавить преобразование картинки в маленький формат      'link_small' => $request->get('title')
-        ]);
-        $forumpost->pictures()->save($pictures);
-
         return view('posts.show')->with('forumpost', $forumpost);
     }
 
@@ -141,12 +111,17 @@ class PostController extends Controller
     {
         $parent = Post::find($id)->parent_id;
         $comments = Post::threadByComments($parent)->get();
+        if ((count($comments) > 1) && ($parent == 0)){
+            return redirect('categories')->with(
+                'message', 'Это стартовое сообщение в ветке и оно не может быть удалено'
+            );
+            // todo добавить возможность удаления корневого сообщения с перемещением существующей ветки
+        }
         if (count($comments) == 2) {
             $startPost = $comments->first();
             $startPost->child = false;
             $startPost->save();
         }
-
         Post::destroy($id);
         return redirect('categories')->with('message', 'Ваше сообщение было удалено');
     }
