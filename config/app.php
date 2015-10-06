@@ -147,6 +147,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        Spatie\Glide\GlideServiceProvider::class,
 
     ],
 
@@ -199,6 +200,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        'GlideImage' => 'Spatie\Glide\GlideImageFacade',
 
     ],
 
