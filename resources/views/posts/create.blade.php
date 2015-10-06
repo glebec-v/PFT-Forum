@@ -5,7 +5,7 @@
 
     @include('partials.errors')
 
-    {!! Form::open(['route' => 'post.store', 'class' => 'form']) !!}
+    {!! Form::open(['route' => 'post.store', 'class' => 'form', 'files' => true]) !!}
 
     <div class="form-group">
         {!! Form::label('Заголовок поста') !!}
@@ -38,6 +38,11 @@
         </div>
         {!! Form::hidden('parent_id', 0) !!}
     @endif
+
+    <div class="form-group">
+        {!! Form::label('Присоедините картинки') !!}
+        {!! Form::file('images[]', ['accept' => 'image/*', 'multiple' => true]) !!}
+    </div>
 
     {!! Form::hidden('child', false) !!}
     {{-- Temporary!!! --}}

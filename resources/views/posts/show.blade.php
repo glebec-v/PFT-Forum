@@ -7,7 +7,7 @@
     @if ( $forumpost->pictures->count() > 0)
         <ul>
             @foreach ($forumpost->pictures as $picture)
-                <li><img src="{{ $picture->link }}" height="240" width="320"></li>
+                <li><img src="{{ GlideImage::load($picture->link)->modify(['w' => 100]) }}"/></li>
             @endforeach
         </ul>
     @endif
