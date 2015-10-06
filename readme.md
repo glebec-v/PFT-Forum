@@ -2,21 +2,26 @@
 
 ## Установка
 
-Клонируйте репозиторий. Далее запускаете ```$ composer install``` После того как он отработает, выполните 3 команды:
+Клонируйте репозиторий. Далее запускаете ```$ composer install``` После того как он отработает, выполните команды:
 ```
 composer require laravelcollective/html
 composer require nesbot/carbon
+composer require spatie/laravel-glide
 composer update
 ```
-далее нужно добавить в файл /config/app.php в массив providers строчку
+далее нужно добавить в файл /config/app.php в массив providers следующее:
 ```
 Collective\Html\HtmlServiceProvider::class,
+Spatie\Glide\GlideServiceProvider::class,
 ```
  и в массив aliases:
 ```
 'Form' => Collective\Html\FormFacade::class,
 'Html' => Collective\Html\FormFacade::class,
+'GlideImage' => 'Spatie\Glide\GlideImageFacade',
 ```
+Для добавления файла конфигурации пакета Laravel-Glide в ```config/``` выполните:
+ ```php artisan vendor:publish --provider="Spatie\Glide\GlideServiceProvider"```
 
 Создайте файл .env, пропишите туда название БД и пользователя. Чтобы получить чистую структуру таблиц, выполните
 ```$ php artisan migrate```
