@@ -22,10 +22,32 @@ class PostsTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
         $category = $faker->numberBetween(1,4);
 
+        $code = 'void *functionCount1()
+{
+   for(;;)
+   {
+      pthread_mutex_lock( &condition_mutex );
+      while( count >= COUNT_HALT1 && count <= COUNT_HALT2 )
+      {
+         pthread_cond_wait( &condition_cond, &condition_mutex );
+      }
+      pthread_mutex_unlock( &condition_mutex );
+
+      pthread_mutex_lock( &count_mutex );
+      count++;
+      printf("Counter value functionCount1: %d\n",count);
+      pthread_mutex_unlock( &count_mutex );
+
+      if(count >= COUNT_DONE) return(NULL);
+    }
+}';
+
         Post::create([
             'parent_id' => 0,
             'child' => true,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
+            'code' => $code,
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//1
@@ -33,6 +55,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 1,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//2
@@ -40,6 +63,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 1,
             'child' => true,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//3
@@ -47,6 +71,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 1,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//4
@@ -54,6 +79,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 3,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//5
@@ -61,6 +87,8 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 1,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
+            'code' => $code,
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//6
@@ -68,6 +96,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 3,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//7
@@ -75,6 +104,8 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 3,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
+            'code' => $code,
             'category_id' => $category,
             'user_id' => $faker->numberBetween(1,5),
         ]);//8
@@ -85,6 +116,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 0,
             'child' => true,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//9
@@ -92,6 +124,8 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 9,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
+            'code' => $code,
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//10
@@ -99,6 +133,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 9,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//11
@@ -106,6 +141,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 9,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//12
@@ -113,6 +149,8 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 0,
             'child' => true,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
+            'code' => $code,
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//13
@@ -120,6 +158,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 13,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//14
@@ -127,6 +166,7 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 13,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//15
@@ -134,6 +174,8 @@ class PostsTableSeeder extends Seeder
             'parent_id' => 13,
             'child' => false,
             'title' => $faker->sentence(),
+            'body' => $faker->realText($faker->numberBetween(40, 400)),
+            'code' => $code,
             'category_id' => $category2,
             'user_id' => $faker->numberBetween(1,5),
         ]);//16

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Content;
+use App\Models\Picture;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -17,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('categories');
     }
 
     /**
@@ -27,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::lists('name');
+        return view('posts.create')->with('categories', $categories);
     }
 
     /**
@@ -38,10 +42,35 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $post = new Post([
+            'title' => $request->get('title'),
+            'body' => $request->get('body'),
+            'code' => $request->get('code'),
+            'parent_id' => $request->get('parent_id'),
+            'category_id' => $request->get('category_id'),
+            'child' => $request->get('child'),
+            'user_id' => $request->get('user_id')
+        ]);
+
+        $destinationPath = storage_path('app').'/img';
+        $imageFileName = 'img_'.str_random(20).'_'.$post->user_id; // todo решение спорное, однако пока так
+        if ($request->file('image')->isValid()){
+            $request->file('image')->move($destinationPath, $imageFileName);
+        }
+        $pictures = new Picture([
+            'link' => $destinationPath,
+    //  todo добавить преобразование картинки в маленький формат      'link_small' => $request->get('title')
+        ]);
+
+        $post->save();
+        $post->pictures()->save($pictures);
+
         // привязка авторизованного пользователя к создаваемому посту
         // $forumpost = new Post($request->all());
         // Auth::user()->posts()->save($forumpost);
-        // return redirect('somewhere');
+
+        // Todo отработать осмысленный редирект, так как пост может создаваться тремя разными способами
+        return redirect('categories');
     }
 
     /**
@@ -64,7 +93,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $forumpost = Post::findOrFAil($id);
+        return view('posts.edit')-with('forumpost', $forumpost);
     }
 
     /**
@@ -76,7 +106,12 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $forumpost = Post::findOrFAil($id);
+
+        $forumpost->update([
+            'title' => $request->get('title')
+        ]);
+        return view('posts.show')->with('forumpost', $forumpost);
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <h2>{{ $category }}</h2>
+    <h2>{{ $category->name }}</h2>
     @if ($posts->count() > 0)
         <ul>
             @foreach($posts as $post)
@@ -20,3 +20,12 @@
     @endif
 
 @stop
+
+@section('profit_links')
+    <p>
+        {!! link_to_action('PostsThreadsController@getCreateNext', 'Создать пост', [
+            'category_id' => $category->id,
+            'parent_id' => 0
+        ]) !!}
+    </p>
+@endsection
