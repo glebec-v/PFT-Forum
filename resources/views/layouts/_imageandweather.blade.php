@@ -12,9 +12,7 @@
         <div class="col-lg-1 col-md-1 hidden-sm topheaderimg fly"><img src="../../images/composer.jpg"></div>
 
         <div id="weather" class="col-sm-2 col-md-2 col-lg-1">
-           <a href="http://pogoda.yandex.ru/tambov/">{{$city}}
-           <img src="http://img.yandex.net/i/wiz{{$pic}}.png" alt={{$type}} title={{$type}}></a>
-            <p>{{$temp}} <sup>o</sup>C</p>
+        {!! \App\Http\Controllers\Components::weather() !!}
         </div>
     </div>
 </div>

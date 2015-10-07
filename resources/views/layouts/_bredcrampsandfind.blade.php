@@ -12,10 +12,10 @@
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <ul class="list-inline pull-right">
                 <li>
-                    <div class="pull-right">
-                        <form action="#" method="post" class="form-search">
-                            <input type="text" class="input-sm search-query">
-                            <button type="submit" class="btn">Поиск</button>
+                    <div class="pull-right small">
+                        <form action="#" method="post" class="form-search small">
+                            <input type="text" class="input-xs search-query">
+                            <button type="submit" class="btn-group-sm"><span class="glyphicon glyphicon glyphicon-search small"></span></button>
                         </form>
                     </div>
                 </li>

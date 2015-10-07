@@ -16,7 +16,7 @@
 @include('layouts._bredcrampsandfind')
 
 <div class="container" style="padding: 0px; ">
-    <div class="col-lg-2 navbar-right clearfix" style="background-color: #f7ecb5; border-radius: 10px 10px 0px 0px">
+    <div class="col-lg-2 col-md-2 hidden-sm hidden-xs navbar-right clearfix" style="background-color: #f7ecb5; border-radius: 10px 10px 0px 0px">
         @section('profit_links')
 
             @if(Session::has('message'))
