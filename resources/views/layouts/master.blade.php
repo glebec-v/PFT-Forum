@@ -47,6 +47,9 @@
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {!! Html::script ("/js/ie10-viewport-bug-workaround.js") !!}
 {!! Html::script ("/js/timer.js") !!}
+        <!-- BEGIN JIVOSITE CODE {literal} -->
+{!! Html::script ("/js/jivosite.js") !!}
+        <!-- {/literal} END JIVOSITE CODE -->
 
 </body>
 </html>
