@@ -41,7 +41,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post([
+        $forumpost = new Post([
             'title' => $request->get('title'),
             'body' => $request->get('body'),
             'code' => $request->get('code'),
@@ -50,8 +50,8 @@ class PostController extends Controller
             'child' => $request->get('child'),
             'user_id' => $request->get('user_id')
         ]);
-        $post->save();
-        $this->savePictureIfExist($request->file('images'), $post);
+        $forumpost->save();
+        $this->savePictureIfExist($request->file('images'), $forumpost);
 
         // привязка авторизованного пользователя к создаваемому посту
         // $forumpost = new Post($request->all());
@@ -107,6 +107,7 @@ class PostController extends Controller
             'code' => $request->get('code')
         ]);
         $this->savePictureIfExist($request->file('images'), $forumpost);
+        $forumpost = Post::findOrFAil($id); // показываем обновленный пост
         return view('posts.show')->with('forumpost', $forumpost);
     }
 
