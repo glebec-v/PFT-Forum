@@ -5,11 +5,9 @@
     <pre>{{ $forumpost->code }}</pre>
     <hr/>
     @if ( $forumpost->pictures->count() > 0)
-        <ul>
-            @foreach ($forumpost->pictures as $picture)
-                <li><img src="{{ GlideImage::load($picture->link)->modify(['w' => 100]) }}"/></li>
-            @endforeach
-        </ul>
+        @foreach ($forumpost->pictures as $picture)
+            <img src="{{ GlideImage::load($picture->link)->modify(['w' => 100]) }}"/>
+        @endforeach
     @endif
 @stop
 
