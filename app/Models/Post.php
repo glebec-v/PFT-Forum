@@ -8,6 +8,8 @@ class Post extends Model
 {
     protected $fillable = [
         'title',
+        'body',
+        'code',
         'user_id', // TODO this is temporary!!!
         'parent_id',
         'category_id',
@@ -23,10 +25,6 @@ class Post extends Model
         return $query->where('parent_id', $commentedPost_id)->orWhere('id', $commentedPost_id);
     }
 
-    public function content()
-    {
-        return $this->hasOne('App\Models\Content');
-    }
     public function category()
     {
         return $this->belongsTo('App\Models\Category');

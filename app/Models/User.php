@@ -41,6 +41,11 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\Models\Post');
     }
+
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role')->withTimestamps();

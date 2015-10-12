@@ -24,4 +24,5 @@
             'parent_id' => $firstpost->id
         ]) !!}
     </p>
+    @parent
 @endsection

@@ -81,7 +81,7 @@ class CategoriesController extends Controller
         $category = Category::find($id);
         $oldname = $category->name;
         $category->update(['name' => $request->get('name')]);
-        return redirect('categories')->with('message', 'Категория "'.$oldname.'" успешно изменено на "'.$category->name.'"');
+        return redirect('categories')->with('message', 'Категория "'.$oldname.'" успешно изменена на "'.$category->name.'"');
     }
 
     /**

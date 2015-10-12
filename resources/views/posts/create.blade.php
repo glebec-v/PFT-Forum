@@ -9,7 +9,11 @@
 
     <div class="form-group">
         {!! Form::label('Заголовок поста') !!}
-        {!! Form::text('title', null, ['required', 'class' => 'form-control', 'placeholder' => 'Заголовок']) !!}
+        @if (isset($forumpost->id))
+            {!! Form::text('title', 'Re: '.$forumpost->title, ['required', 'class' => 'form-control']) !!}
+        @else
+            {!! Form::text('title', null, ['required', 'class' => 'form-control', 'placeholder' => 'Ваш заголовок']) !!}
+        @endif
     </div>
     <div class="form-group">
         {!! Form::label('Текст сообщения') !!}
@@ -18,10 +22,6 @@
     <div class="form-group">
         {!! Form::label('Код') !!}
         {!! Form::textarea('code', null, ['class' => 'form-control', 'placeholder' => 'Code snippet']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('Присоедините картинки') !!}
-        {!! Form::file('image', ['accept' => 'image/*']) !!}
     </div>
 
     @if (isset($forumpost->category->name))
@@ -34,10 +34,15 @@
         <h3>Выберите категорию</h3>
         <div class="form-group">
             {!! Form::label('Категории') !!}
-            {!! Form::select('category_id', $categories, null, ['name' => 'category_id']) !!}
+            {!! Form::select('category_id', $categories, null, ['category_id' => 'name']) !!}
         </div>
         {!! Form::hidden('parent_id', 0) !!}
     @endif
+
+    <div class="form-group">
+        {!! Form::label('Присоедините картинки') !!}
+        {!! Form::file('images[]', ['accept' => 'image/*', 'multiple' => true]) !!}
+    </div>
 
     {!! Form::hidden('child', false) !!}
     {{-- Temporary!!! --}}
