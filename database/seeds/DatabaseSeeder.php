@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call('PostsTableSeeder');
         $this->call('ProfilesTableSeeder');
-        $this->call('PicturesTableSeeder');
 
         Model::reguard();
     }

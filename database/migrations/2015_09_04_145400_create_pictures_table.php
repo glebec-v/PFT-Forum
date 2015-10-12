@@ -14,8 +14,7 @@ class CreatePicturesTable extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('link'); // TODO переделать название поля, тут хранится имя картинки
-            $table->string('link_small'); // TODO удалить поле, не нужно
+            $table->string('name');
             $table->integer('post_id')->unsigned();
             $table->timestamps();
 
