@@ -1,29 +1,46 @@
-<!-- resources/views/auth/register.blade.php -->
+@extends('layouts.master')
 
-<form method="POST" action="/auth/register">
-    {!! csrf_field() !!}
+@section('content')
+    <div class="col-md-6">
+        {!! Form::open(['url' => '/auth/register', 'class' => 'form']) !!}
 
-    <div>
-        Name
-        <input type="text" name="name" value="{{ old('name') }}">
+            <h1>Create a TODOParrot Account</h1>
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    There were some problems creating an account:
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="form-group">
+                {!! Form::label('name', 'Your Name') !!}
+                {!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('Your E-mail Address') !!}
+                {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Email Address']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('Your Password') !!}
+                {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Password']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('Confirm Password') !!}
+                {!! Form::password('password_confirmation', ['class'=>'form-control', 'placeholder'=>'Confirm Password']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::submit('Create My Account!', ['class'=>'btn btn-primary']) !!}
+            </div>
+
+        {!! Form::close() !!}
     </div>
-
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
-
-    <div>
-        Password
-        <input type="password" name="password">
-    </div>
-
-    <div>
-        Confirm Password
-        <input type="password" name="password_confirmation">
-    </div>
-
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+@endsection
