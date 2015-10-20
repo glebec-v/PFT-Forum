@@ -2,19 +2,13 @@
 
 ## Установка
 
-Клонируйте репозиторий. Далее запускаете ```$ composer install``` После того как он отработает, выполните команды:
-```
-composer require laravelcollective/html
-composer require nesbot/carbon
-composer require spatie/laravel-glide
-composer update
-```
-далее нужно добавить в файл /config/app.php в массив providers следующее:
+Клонируйте репозиторий. Далее запускаете ```$ composer install``` далее, в файле /config/app.php в массиве providers
+раскомментируйте следующее:
 ```
 Collective\Html\HtmlServiceProvider::class,
 Spatie\Glide\GlideServiceProvider::class,
 ```
- и в массив aliases:
+ и в массиве aliases:
 ```
 'Form' => Collective\Html\FormFacade::class,
 'Html' => Collective\Html\FormFacade::class,
