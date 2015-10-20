@@ -151,7 +151,7 @@ class PostController extends Controller
                 if ($image->isValid()) {
                     $image->move($destinationPath, $imageFileName);
                 }
-                $picture = new Picture(['link' => $imageFileName]);
+                $picture = new Picture(['name' => $imageFileName]);
                 $post->pictures()->save($picture);
             }
         }

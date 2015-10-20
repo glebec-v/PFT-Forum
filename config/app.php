@@ -145,9 +145,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Collective\Html\HtmlServiceProvider::class,
+        //Collective\Html\HtmlServiceProvider::class,
 
-        Spatie\Glide\GlideServiceProvider::class,
+        //Spatie\Glide\GlideServiceProvider::class,
 
     ],
 
@@ -198,10 +198,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        //'Form' => Collective\Html\FormFacade::class,
+        //'Html' => Collective\Html\HtmlFacade::class,
 
-        'GlideImage' => 'Spatie\Glide\GlideImageFacade',
+        //'GlideImage' => 'Spatie\Glide\GlideImageFacade',
 
     ],
 

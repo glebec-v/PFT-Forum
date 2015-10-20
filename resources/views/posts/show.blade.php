@@ -6,7 +6,7 @@
     <hr/>
     @if ( $forumpost->pictures->count() > 0)
         @foreach ($forumpost->pictures as $picture)
-            <img src="{{ GlideImage::load($picture->link)->modify(['w' => 100]) }}"/>
+            <img src="{{ GlideImage::load($picture->name)->modify(['w' => 100]) }}"/>
         @endforeach
     @endif
 @stop
