@@ -23,7 +23,7 @@ return [
      * URLs to generated images will start with this string
      *
      */
-    'baseURL' => 'images',
+    'baseURL' => 'img',
 
     /*
      * The maximum allowed total image size in pixels
@@ -35,5 +35,5 @@ return [
      * a key to avoid the visitors of your site to alter the URL
      * manually
      */
-    'useSecureURLs' => false
+    'useSecureURLs' => true
 ];
