@@ -127,11 +127,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $parent = Post::find($id)->parent_id;
+        $forumpost = Post::find($id);
+        if (Gate::denies('delete', $forumpost)){
+            return redirect('post/'.$id)->with('message', 'Не хватает прав на удаление этого сообщения');
+        } // TODO особого смысла в этом нет, просто заготовка на будущее, чтобы не зависеть от кнопок в формах
+        $parent = $forumpost->parent_id;
         if ($parent == 0) {
             $comments = Post::threadByComments($id)->get();
             if (count($comments) > 1)
-                return redirect('categories')->with(
+                return redirect('post/'.$id)->with(
                     'message', 'Это стартовое сообщение в ветке и оно не может быть удалено'
                 );
             // todo добавить возможность удаления корневого сообщения с перемещением существующей ветки

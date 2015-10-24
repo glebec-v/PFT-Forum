@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('update', function($user, $post){
             return $user->owns($post);
         });
+
+        $gate->define('delete', function($user, $post){
+            return $user->owns($post);
+        });
     }
 }
