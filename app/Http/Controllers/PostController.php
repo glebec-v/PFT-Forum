@@ -8,6 +8,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -55,12 +56,8 @@ class PostController extends Controller
             'child' => $request->get('child'),
             'user_id' => $request->get('user_id')
         ]);
-        $forumpost->save();
+        Auth::user()->posts()->save($forumpost);
         $this->savePictureIfExist($request->file('images'), $forumpost);
-
-        // привязка авторизованного пользователя к создаваемому посту
-        // $forumpost = new Post($request->all());
-        // Auth::user()->posts()->save($forumpost);
 
         // Todo отработать осмысленный редирект, так как пост может создаваться тремя разными способами
         return redirect('categories');
