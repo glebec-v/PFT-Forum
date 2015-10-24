@@ -8,6 +8,9 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Spatie\Glide\Controller\GlideImageController;
+use Spatie\Glide\GlideApiFactory;
+use Spatie\Glide\GlideImageFacade;
 
 
 class PostController extends Controller
@@ -145,6 +148,7 @@ class PostController extends Controller
     protected function savePictureIfExist($pictures, $post)
     {
         if (!is_null($pictures[0])) {
+
             $destinationPath = storage_path('images');
             foreach($pictures as $image) {
                 $imageFileName = 'img_' . str_random(20) . '_' . $post->user_id;

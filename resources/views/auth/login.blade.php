@@ -1,24 +1,46 @@
-<!-- resources/views/auth/login.blade.php -->
-<!-- Temporary!!! -->
+@extends('layouts.master')
+@section('content')
+    <div class="col-md-6">
+        {!! Form::open(['url' => '/auth/login', 'class' => 'form']) !!}
 
-<form method="POST" action="/auth/login">
-    {!! csrf_field() !!}
+            <h1>Sign In to Your TODOParrot Account</h1>
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                There were some problems signing into your account:
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="form-group">
+                {!! Form::label('email', 'Your E-mail Address') !!}
+                {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'E-mail']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('Your Password') !!}
+                {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Password']) !!}
+            </div>
+
+            <div class="form-group">
+                <label>
+                    {!! Form::checkbox('remember', 'remember') !!} Remember Me
+                </label>
+            </div>
+
+            <div class="form-group">
+                {!! Form::submit('Login', ['class'=>'btn btn-primary']) !!}
+            </div>
+
+            <div>
+                <a href="/password/email">Forgot Your Password?</a>
+            </div>
+
+        {!! Form::close() !!}
+
     </div>
-
-    <div>
-        Password
-        <input type="password" name="password" id="password">
-    </div>
-
-    <div>
-        <input type="checkbox" name="remember"> Remember Me
-    </div>
-
-    <div>
-        <button type="submit">Login</button>
-    </div>
-</form>
+@endsection

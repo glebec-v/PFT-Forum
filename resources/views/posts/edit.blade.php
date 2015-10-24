@@ -23,7 +23,7 @@
                 {!! Form::label('Какие картинки оставить?') !!}
                 @foreach ($forumpost->pictures as $picture)
                     {!! Form::checkbox('picture_'.$picture->id, $picture->id, true) !!}
-                    <img src="{{ GlideImage::load($picture->link)->modify(['w' => 100]) }}"/>
+                    <img src="{{ GlideImage::load($picture->name)->modify(['w' => 100]) }}"/>
                 @endforeach
             @endif
         </div>
