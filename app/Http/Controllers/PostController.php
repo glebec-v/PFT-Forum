@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 class PostController extends Controller
@@ -84,6 +85,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $forumpost = Post::findOrFAil($id);
+
+        if (Gate::denies('update', $forumpost)){
+            return redirect('post/'.$id)->with('message', 'вы не можете редактировать это сообщение');
+        }
+
         return view('posts.edit')->with('forumpost', $forumpost);
     }
 

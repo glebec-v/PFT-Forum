@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
 
-        //
+        $gate->define('update', function($user, $post){
+            return $user->owns($post);
+        });
     }
 }
