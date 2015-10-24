@@ -3,7 +3,7 @@
     <div class="col-md-6">
         {!! Form::open(['url' => '/auth/login', 'class' => 'form']) !!}
 
-            <h1>Sign In to Your TODOParrot Account</h1>
+            <h1>Sign In to Your Account</h1>
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger">

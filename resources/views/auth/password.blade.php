@@ -3,7 +3,7 @@
     <div class="col-md-6">
         {!! Form::open(['url' => '/password/email', 'class' => 'form']) !!}
 
-        <h1>h1>Recover Your Password</h1>
+        <h1>Recover Your Password</h1>
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">

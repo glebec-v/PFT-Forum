@@ -12,6 +12,11 @@ use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show', 'index']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +24,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return redirect('categories');
+        return redirect('categories')->with('message', 'переадресован с метода index()');
     }
 
     /**
