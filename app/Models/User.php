@@ -50,4 +50,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('App\Models\Role')->withTimestamps();
     }
+
+    public function owns($related)
+    {
+        return $this->id == $related->user_id;
+    }
 }

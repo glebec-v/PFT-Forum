@@ -8,13 +8,18 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Spatie\Glide\Controller\GlideImageController;
-use Spatie\Glide\GlideApiFactory;
-use Spatie\Glide\GlideImageFacade;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show', 'index']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +27,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return redirect('categories');
+        return redirect('categories')->with('message', 'переадресован с метода index()');
     }
 
     /**
@@ -53,12 +58,8 @@ class PostController extends Controller
             'child' => $request->get('child'),
             'user_id' => $request->get('user_id')
         ]);
-        $forumpost->save();
+        Auth::user()->posts()->save($forumpost);
         $this->savePictureIfExist($request->file('images'), $forumpost);
-
-        // привязка авторизованного пользователя к создаваемому посту
-        // $forumpost = new Post($request->all());
-        // Auth::user()->posts()->save($forumpost);
 
         // Todo отработать осмысленный редирект, так как пост может создаваться тремя разными способами
         return redirect('categories');
@@ -85,6 +86,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $forumpost = Post::findOrFAil($id);
+
+        if (Gate::denies('update', $forumpost)){
+            return redirect('post/'.$id)->with('message', 'вы не можете редактировать это сообщение');
+        }
+
         return view('posts.edit')->with('forumpost', $forumpost);
     }
 
@@ -122,11 +128,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $parent = Post::find($id)->parent_id;
+        $forumpost = Post::find($id);
+        if (Gate::denies('delete', $forumpost)){
+            return redirect('post/'.$id)->with('message', 'Не хватает прав на удаление этого сообщения');
+        } // TODO особого смысла в этом нет, просто заготовка на будущее, чтобы не зависеть от кнопок в формах
+        $parent = $forumpost->parent_id;
         if ($parent == 0) {
             $comments = Post::threadByComments($id)->get();
             if (count($comments) > 1)
-                return redirect('categories')->with(
+                return redirect('post/'.$id)->with(
                     'message', 'Это стартовое сообщение в ветке и оно не может быть удалено'
                 );
             // todo добавить возможность удаления корневого сообщения с перемещением существующей ветки

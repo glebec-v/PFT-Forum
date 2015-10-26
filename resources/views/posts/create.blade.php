@@ -45,8 +45,6 @@
     </div>
 
     {!! Form::hidden('child', false) !!}
-    {{-- Temporary!!! --}}
-    {!! Form::hidden('user_id', 1) !!}
 
     <div class="form-group">
         {!! Form::submit('Запостить', ['class' => 'btn btn-primary']) !!}

@@ -10,6 +10,10 @@ use App\Models\Post;
 
 class PostsThreadsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => 'getCreateNext']);
+    }
     /**
      * Показывает полную ветку в выбранной категории
      * @param $category_id

@@ -4,7 +4,7 @@
     <div class="col-md-6">
         {!! Form::open(['url' => '/auth/register', 'class' => 'form']) !!}
 
-            <h1>Create a TODOParrot Account</h1>
+            <h1>Create an Account</h1>
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
