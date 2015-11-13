@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-    <link href="css/app.css" rel="stylesheet">
-
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    {!! Html::style('css/app.css') !!}
     <title>Forum</title>
 </head>
 <body>
@@ -82,7 +81,7 @@
             </div>
         </div>
     </div>
-    <script src="js/all.js" type="text/javascript"></script>
+    {!! Html::script('js/all.js') !!}
 </div>
 </body>
 </html>

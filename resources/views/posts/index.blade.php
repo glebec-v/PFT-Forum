@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('/../layouts.master')
 @section('content')
     <h2>{{ $category->name }}</h2>
     @if ($posts->count() > 0)
