@@ -1,9 +1,4 @@
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-$primaryColor: red;
-
-body {
-  background-color: green;
-  color: $primaryColor;
-}
+@import "bootstrap/bootstrap";
+@import "bootstrap/bootstrap-responsive";
 

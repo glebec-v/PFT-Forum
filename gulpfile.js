@@ -12,5 +12,16 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass(['app.scss', 'front.scss']).scripts('test.js');
+    mix.sass([
+        'app.scss',
+        'icons/general_foundicons.scss',
+        'icons/social_foundicons.scss',
+        'fonts/font-awesome.scss',
+        'components/custom.scss'
+    ]);
+    mix.scripts([
+        'bootstrap.js',
+        'jquery.min.js',
+        'default.js'
+    ]);
 });
