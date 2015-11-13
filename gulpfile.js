@@ -1,5 +1,5 @@
 var elixir = require('laravel-elixir');
-
+//elixir.config.assetsPath = 'app/Assets'; // 'app/Assets' - путь к ассетам приложения
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -12,5 +12,5 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass(['app.scss', 'front.scss']).scripts('test.js');
 });
