@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     {!! Html::style('css/app.css') !!}
+    {!! Html::style('http://fonts.googleapis.com/css?family=Abel') !!}
     <title>Forum</title>
 </head>
 <body>
@@ -15,8 +16,8 @@
                 <div class="span12">
 
                     <div id="divLogo" class="pull-left">
-                        <a href="index.html" id="divSiteTitle">Your Name Here</a><br />
-                        <a href="index.html" id="divTagLine">Your Tag Line Here</a>
+                        <a href="/" id="divSiteTitle">Форум</a><br />
+                        <a href="/post/create" id="divTagLine">Поделись своими мыслями!</a>
                     </div>
 
                     <div id="divMenuRight" class="pull-right">
@@ -26,27 +27,9 @@
                             </button>
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
-                                    <li class="dropdown"><a href="index.html">Home</a></li>
-                                    <li class="dropdown"><a href="about.html">About</a></li>
-                                    <li class="dropdown active">
-                                        <a href="page.html" class="dropdown-toggle">Page <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="full.html">Full Page</a></li>
-                                            <li><a href="2-column.html">Two Column</a></li>
-                                            <li><a href="3-column.html">Three Column</a></li>
-                                            <li><a href="../documentation/index.html">Documentation</a></li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
-                                                <ul class="dropdown-menu sub-menu">
-                                                    <li><a href="#">Dropdown Item</a></li>
-                                                    <li><a href="#">Dropdown Item</a></li>
-                                                    <li><a href="#">Dropdown Item</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="gallery.html">Gallery</a></li>
-                                    <li class="dropdown"><a href="contact.php">Contact</a></li>
+                                    <li class="dropdown"><a href="/">Home</a></li>
+                                    @include('partials.navmenu')
+                                    @include('partials.navauth')
                                 </ul>
                             </div>
                         </div>
@@ -63,10 +46,10 @@
 <div class="container">
     <div class="divPanel page-content">
         <div class="row-fluid">
-            <div class="span8">
+            <div class="span10">
                 @yield('content')
             </div>
-            <div class="span4">
+            <div class="span2">
                 @section('profit_links')
                     @if(Session::has('message'))
                         <div class="alert-info">
@@ -81,6 +64,8 @@
             </div>
         </div>
     </div>
+    <div id="footerOuterSeparator"></div>
+    @include('partials.footer')
     {!! Html::script('js/all.js') !!}
 </div>
 </body>

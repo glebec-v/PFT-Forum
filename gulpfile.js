@@ -20,8 +20,8 @@ elixir(function(mix) {
         'components/custom.scss'
     ]);
     mix.scripts([
-        'bootstrap.js',
         'jquery.min.js',
+        'bootstrap.js',
         'default.js'
     ]);
 });
