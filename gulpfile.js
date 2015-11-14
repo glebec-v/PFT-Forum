@@ -17,7 +17,8 @@ elixir(function(mix) {
         'icons/general_foundicons.scss',
         'icons/social_foundicons.scss',
         'fonts/font-awesome.scss',
-        'components/custom.scss'
+        'components/custom.scss',
+        'components/my.scss'
     ]);
     mix.scripts([
         'jquery.min.js',
