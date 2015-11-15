@@ -1,27 +1,26 @@
 @extends('layouts.master')
 @section('content')
+    <div class="span12">
+        @include('partials.post_show', ['forumpost' => $comments->first()])
+    </div>
+    <div id="contentOuterSeparator"></div>
+    <h3>Комментарии:</h3>
     @if ($comments->count() > 0)
-        <ul>
-            @foreach($comments as $post)
-                <li>
-                    @if ($post->child)
-                        К этому посту имеются комментарии:
-                        {!! link_to('posts/comments/'.$post->id, $post->title) !!}
-                        {!! link_to('post/'.$post->id, 'Посмотреть пост') !!}
-                    @else
-                        {!! link_to('post/'.$post->id, $post->title) !!}
-                    @endif
-                </li>
-            @endforeach
-        </ul>
+        <div class="shifted-thread">
+            <ul>
+                @foreach($comments as $post)
+                    <li> @include('partials.thread_show') </li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 @stop
 
 @section('profit_links')
     <p>
         {!! link_to_action('PostsThreadsController@getCreateNext', 'Продолжить дискуссию', [
-            'category_id' => $firstpost->category_id,
-            'parent_id' => $firstpost->id
+            'category_id' => $comments->first()->category_id,
+            'parent_id' => $comments->first()->id
         ]) !!}
     </p>
     @parent
