@@ -9,7 +9,10 @@
         <div class="shifted-thread">
             <ul>
                 @foreach($comments as $post)
-                    <li> @include('partials.thread_show') </li>
+                    <li class="no-markers"> @include('partials.thread_show', [
+                        'post' => $post,
+                        'id_first' => $comments->first()->id
+                    ]) </li>
                 @endforeach
             </ul>
         </div>
