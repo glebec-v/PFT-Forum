@@ -12,5 +12,5 @@
         <span style="text-transform:none;">19 hours ago</span>
     </p>
     <p>
-        <a class="btn btn-secondary" href="/categories"><i class="general foundicon-monitor">ВСЕ СООБЩЕНИЯ</i></a>
+        <a class="btn btn-secondary" href="/categories"><i class="general foundicon-monitor"> ВСЕ СООБЩЕНИЯ</i></a>
     </p>
