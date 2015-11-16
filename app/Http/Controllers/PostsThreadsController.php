@@ -23,7 +23,10 @@ class PostsThreadsController extends Controller
     {
         $forumpost = Post::threadByCategory($category_id)->get();
         $category = $forumpost->first()->category;
-        return view('posts.index')->with(['posts' => $forumpost, 'category' => $category]);
+        return view('posts.index')->with([
+            'posts' => $forumpost,
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -34,7 +37,10 @@ class PostsThreadsController extends Controller
     public function getComments($id)
     {
         $comments = Post::threadByComments($id)->get();
-        return view('posts.comments')->with('comments', $comments);
+
+        return view('posts.comments')->with([
+            'comments' => $comments,
+        ]);
     }
 
     /**
@@ -54,5 +60,21 @@ class PostsThreadsController extends Controller
             $forumpost->save();
             return view('posts.create')->with('forumpost', $forumpost);
         }
+    }
+
+    protected function countAllNestedPosts($id)
+    {
+        static $count = 0;
+        $thread = Post::threadByComments($id)->get();
+        $firstId = $thread->keys()->first();
+
+        $thread->forget($firstId);
+        //dd($thread);
+        foreach ($thread as $post){
+            if ($post->child)
+                $count = $this->countAllNestedPosts($post->id);
+            $count++;
+        }
+        return $count;
     }
 }

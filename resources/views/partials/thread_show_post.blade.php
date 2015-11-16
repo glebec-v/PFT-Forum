@@ -5,7 +5,7 @@
         <p>
             <a class="btn btn-success btn-small" href="/post/{{$post->id}}">Читать далее</a>
             @if ($post->child)
-                <a class="btn btn-primary btn-small" href="/posts/comments/{{$post->id}}">Комментарии</a>
+                <a class="btn btn-primary btn-small" href="/posts/comments/{{$post->id}}">Комментарии: {{ \App\Models\Post::threadByComments($post->id)->get()->count() -1 }}</a>
             @endif
             <i class="icon-user"></i> {{ $post->user->name }}
             <i class="icon-calendar"></i> {{ \Carbon\Carbon::parse($post->updated_at)->format('d-m-y H:i') }}
