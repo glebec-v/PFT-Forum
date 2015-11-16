@@ -19,7 +19,7 @@
 
                 </div>
                 <div class="span6" id="footerArea2">
-                    <h3>Недавние сообщения на форуме</h3>
+                    <h3>Новые сообщения на форуме</h3>
                     @include('partials.latest_posts')
                 </div>
 

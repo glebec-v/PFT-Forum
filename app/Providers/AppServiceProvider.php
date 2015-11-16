@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     {
         View()->composer('partials.navmenu', function($view){
             $view->with('categories', \App\Models\Category::all());
+        });
+
+        View()->composer('partials.latest_posts', function($view){
+            $view->with('posts', Post::lastPosts(4));
         });
     }
 

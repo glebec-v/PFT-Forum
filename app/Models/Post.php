@@ -25,6 +25,11 @@ class Post extends Model
         return $query->where('parent_id', $commentedPost_id)->orWhere('id', $commentedPost_id);
     }
 
+    public function scopeLastPosts($query, $count)
+    {
+        return $query->orderBy('created_at', 'desc')->take($count)->get();
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
