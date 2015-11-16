@@ -11,7 +11,7 @@
     @if ($posts->count() > 0)
         <ul>
             @foreach($posts as $post)
-                <li class="no-markers"> @include('partials.thread_show', [
+                <li class="no-markers"> @include('partials.thread_show_post', [
                         'post' => $post,
                         'id_first' => -1
                 ]) </li>
