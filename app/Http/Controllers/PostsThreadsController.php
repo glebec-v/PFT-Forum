@@ -61,20 +61,4 @@ class PostsThreadsController extends Controller
             return view('posts.create')->with('forumpost', $forumpost);
         }
     }
-
-    protected function countAllNestedPosts($id)
-    {
-        static $count = 0;
-        $thread = Post::threadByComments($id)->get();
-        $firstId = $thread->keys()->first();
-
-        $thread->forget($firstId);
-        //dd($thread);
-        foreach ($thread as $post){
-            if ($post->child)
-                $count = $this->countAllNestedPosts($post->id);
-            $count++;
-        }
-        return $count;
-    }
 }

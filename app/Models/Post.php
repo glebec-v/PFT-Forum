@@ -42,4 +42,18 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public static function countChildren($id)
+    {
+        $count = 0;
+        $thread = Post::threadByComments($id)->get();
+        $firstId = $thread->keys()->first();
+        $thread->forget($firstId);
+        foreach ($thread as $post){
+            if ($post->child)
+                $count = static::countChildren($post->id) + 1;
+            $count++;
+        }
+        return $count;
+    }
 }
