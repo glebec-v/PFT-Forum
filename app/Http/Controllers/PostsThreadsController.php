@@ -10,9 +10,23 @@ use App\Models\Post;
 
 class PostsThreadsController extends Controller
 {
+    public $counter;
+
     public function __construct()
     {
         $this->middleware('auth', ['only' => 'getCreateNext']);
+        $this->counter = function($id){
+            $count = 0;
+            $thread = Post::threadByComments($id)->get();
+            $firstId = $thread->keys()->first();
+            $thread->forget($firstId);
+            foreach ($thread as $post){
+                if ($post->child)
+                    $count = $this->countAllNestedPosts($post->id);
+                $count++;
+            }
+            return $count;
+        };
     }
     /**
      * Показывает полную ветку в выбранной категории
@@ -26,6 +40,7 @@ class PostsThreadsController extends Controller
         return view('posts.index')->with([
             'posts' => $forumpost,
             'category' => $category,
+            'count' => $this->counter
         ]);
     }
 
@@ -40,6 +55,7 @@ class PostsThreadsController extends Controller
 
         return view('posts.comments')->with([
             'comments' => $comments,
+            'count' => $this->counter
         ]);
     }
 
@@ -67,9 +83,7 @@ class PostsThreadsController extends Controller
         static $count = 0;
         $thread = Post::threadByComments($id)->get();
         $firstId = $thread->keys()->first();
-
         $thread->forget($firstId);
-        //dd($thread);
         foreach ($thread as $post){
             if ($post->child)
                 $count = $this->countAllNestedPosts($post->id);
