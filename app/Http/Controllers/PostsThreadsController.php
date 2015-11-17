@@ -15,18 +15,21 @@ class PostsThreadsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => 'getCreateNext']);
-        $this->counter = function($id){
+
+        $counter = function($id) use (&$counter){
             $count = 0;
             $thread = Post::threadByComments($id)->get();
             $firstId = $thread->keys()->first();
             $thread->forget($firstId);
             foreach ($thread as $post){
                 if ($post->child)
-                    $count = $this->countAllNestedPosts($post->id);
+                    $count = $counter($post->id) + 1;
                 $count++;
             }
             return $count;
         };
+
+        $this->counter = $counter;
     }
     /**
      * Показывает полную ветку в выбранной категории
@@ -76,19 +79,5 @@ class PostsThreadsController extends Controller
             $forumpost->save();
             return view('posts.create')->with('forumpost', $forumpost);
         }
-    }
-
-    protected function countAllNestedPosts($id)
-    {
-        static $count = 0;
-        $thread = Post::threadByComments($id)->get();
-        $firstId = $thread->keys()->first();
-        $thread->forget($firstId);
-        foreach ($thread as $post){
-            if ($post->child)
-                $count = $this->countAllNestedPosts($post->id);
-            $count++;
-        }
-        return $count;
     }
 }
