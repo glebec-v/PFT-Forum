@@ -18,3 +18,27 @@
 .no-markers {
   list-style-type: none;
 }
+
+.main-post {
+  padding: 10px;
+  background-color: #ffffff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+.right-space {
+  padding-right: 10px;
+}
+.left-space {
+  padding-left: 20px;
+}
+.bottom-space {
+  padding-bottom: 5px;
+}
+
+.toolbar-panel {
+  padding: 7px;
+  background-color: #dddddd;
+  //border-top: solid 1px black;
+}
