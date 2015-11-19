@@ -27,7 +27,7 @@
                             </button>
                             <div class="nav-collapse collapse">
                                 <ul class="nav nav-pills ddmenu">
-                                    <li class="dropdown"><a href="/">Home</a></li>
+                                    <li class="dropdown"><a href="/">Главная</a></li>
                                     @include('partials.navmenu')
                                     @include('partials.navauth')
                                 </ul>

@@ -27,7 +27,7 @@
                         <span class="label-default"><i class="icon-user"></i> {{ $forumpost->user->name }}</span>
                         <span class="right-space"></span>
                         <span class="label-default"><i class="icon-calendar"></i> {{ \Carbon\Carbon::parse($forumpost->updated_at)->format('d-m-y H:i') }}</span>
-                        <span class="right-space"></span>
+                        <!--span class="right-space"></span-->
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-success btn-small" href="/post/{{$forumpost->id}}/edit">Редактировать</a>

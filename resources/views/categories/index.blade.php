@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <h2>Категории:</h2>
+    <h2>Разделы форума:</h2>
     @if ($categories->count() > 0)
         <ul>
             @foreach($categories as $category)

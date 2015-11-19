@@ -1,5 +1,5 @@
 <li class="dropdown active">
-    <a href="/categories/" class="dropdown-toggle">Категории <b class="caret"></b></a>
+    <a href="/categories/" class="dropdown-toggle">Разделы <b class="caret"></b></a>
     <ul class="dropdown-menu">
         @foreach( $categories as $category)
             <li>
