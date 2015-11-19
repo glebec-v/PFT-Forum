@@ -51,8 +51,15 @@
             </div>
             <div class="span2">
                 @section('profit_links')
+                    @if(\Illuminate\Support\Facades\Auth::user())
+                        <div class="panel-info">
+                            <i class="icon-user"></i>
+                            <span class="right-space"></span>
+                            <span class="label-default">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                        </div>
+                    @endif
                     @if(Session::has('message'))
-                        <div class="alert-info">
+                        <div class="alert-danger">
                             {{ Session::get('message') }}
                         </div>
                     @endif

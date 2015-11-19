@@ -2,7 +2,7 @@
 @section('content')
     <div class="row-fluid">
         <div class="span8">
-            <h2>Категория: {{ $category->name }}</h2>
+            <h2>Раздел: {{ $category->name }}</h2>
         </div>
         <div class="span4">
             <a class="btn btn-large btn-success " href="/posts/create-next/{{ $category->id }}/0">Создать новое сообщение</a>
